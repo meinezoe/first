@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="swiper/css/swiper.css">
+    <style type="text/css" >
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        .swiper-container{
+            width: 778px;
+            height: 400px;
+        }
+        .link{
+            padding-top:10px;
+            padding-left:10px;
+        }
+        .login,.other{
+            font:12px/150% '微软雅黑',Arial,Verdana,"宋体";
+            cursor:auto;
+            color:#444;
+            text-decoration:none;
+        }
+        .regist{
+            margin-left:20px;
+            font:12px/150% '微软雅黑',Arial,Verdana,"宋体";
+            cursor:auto;
+            color:red;
+            text-decoration:none;
+        }
+        .other{
+            margin-left:25px;
+        }
+/*        li.spacer{
+            float:left;
+            overflow:hidden;
+            margin:11px 5px 0 5px;
+            width:1px;
+            height:10px;
+            background-color:#ccc;
+        }*/
+        .tou{
+            margin-top:10px;
+            width: 778px;
+            height: 108px;
+            background:url(./img/header.jpg) no-repeat -45px -110px;
+        }
+        p{
+            opacity: 0.6;
+            margin-left:572px;
+            font:24px/150% '微软雅黑',Arial,Verdana,"宋体";
+            font-weight: 600;
+        }
+        .search{
+            width:10rem;
+            height:1.2rem;
+            /*float:right;*/
+            margin-top:4px;
+            margin-right:20px;
+            line-height:1.24rem;
+            background-color:#eaebed;
+            border-radius:5px;
+        }
+        .bk{
+            position:relative;
+            left:245px;
+            top:20px;
+            /*width: 780px !important;*/
+            /*height: 500px !important;*/
+            /*border: 1px solid;*/
+            /*border-color: transparent #DDD #DDD transparent;*/
+        }
+        img{
+            width:160px;
+            height:160px;
+            vertical-align: middle;
+            border:medium none;//图片无边框
+        }
+
+        .ul_1{
+            position:relative;
+            display: block;
+            width: 800px;
+            height: 500px;
+            margin:0 -1px -1px 0;
+            list-style: none outside none;
+        }
+        ul li{
+            width: 193px;
+            height: 248px;
+            float: left;
+            z-index:10;
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            border-color: #DDD #DDD #DDD #DDD;
+            overflow: hidden;
+            opacity: 0.9;
+            transition-duration: .2s;
+            transition-property:opacity;
+            transition-timing-function:ease-in;
+        }
+
+        dl{
+            display: block;
+            width: 160px;
+            margin: 15px auto auto;
+            /*position: relative;*/
+            z-index: 1;
+        }
+        a{
+            font:12px/150% '微软雅黑',Arial,Verdana,"宋体";
+            cursor:auto;
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:underline;
+        }
+        span{
+            font-size: 12px;
+            font-weight: normal;
+            text-decoration: line-through;
+            color: #999;
+            vertical-align: middle;
+            margin-left: 6px;
+            position:relative;
+            top:10px;
+        }
+        em{
+            font:13px/150% '微软雅黑',Arial,Verdana,"宋体";
+            font-weight: 600;
+            color: #fa2855;
+            position:relative;
+            top:10px;
+        }
+        dt{
+            font-family: Tahoma;
+            line-height: 16px;
+            width: 160px;
+            height: 32px;
+            padding:2px;
+            position:relative;
+            top:168px;
+            z-index:10;
+            overflow: hidden;
+        }
+        /*.dt_1,.dt_2,.dt_3,.dt_4,.dt_5,.dt_6,.dt_7,.dt_8*/
+        .dd_1,.dd_2,.dd_3,.dd_4,.dd_5,.dd_6,.dd_7,.dd_8{
+            position:relative;
+            top:-30px;
+        }
+        .price{
+            line-height: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div style="position:relative;margin-left: 200px;">
+    <div style="position:relative;left:50px;top:0px;width:778px;height:50px;background-color: #ddd">
+        <div class="link">
+        <a class="login" href="./liegou.html">你好，请登录</a>
+        <a class="regist" href="./liegou.html">免费注册</a>
+        <!-- <li class="spacer"></li> -->
+        <a class="other" href="./liegou.html">我的订单</a>
+        <!-- <li class="spacer"></li> -->
+        <a class="other" href="./liegou.html">商城会员</a>
+        <!-- <li class="spacer"></li> -->
+        <a class="other" href="./liegou.html">个人资料</a>
+        <div style="float:right;margin-right:20px;">
+        <input type="text" placeholder="商品搜索" class="search">
+        <a class="other" href="./liegou.html">网站导航</a>
+        </div>
+        </div>
+    </div>
+    <header class="tou" style="position:relative;left:50px;">
+    <p>正品保障  值得信赖</p>
+    </header>
+</div>
+
+    <div class="swiper-container" style="margin-top:20px;position:relative;left:-18px;">
+
+    <div class="swiper-wrapper" >
+        <div class="swiper-slide">
+            <img src="./img/show1.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+        <div class="swiper-slide">
+            <img src="./img/show2.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+        <div class="swiper-slide">
+            <img src="./img/show3.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+        <div class="swiper-slide">
+            <img src="./img/show4.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+        <div class="swiper-slide">
+            <img src="./img/show5.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+        <div class="swiper-slide">
+            <img src="./img/show6.jpg" alt="加载中..." style="width:778px;height:400px;">
+        </div>
+    </div>
+    <div class="swiper-button-prev swiper-button-white" style="z-index:100;"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
+    <!--<div class="swiper-button-prev swiper-button-white"></div>-->
+    <!--<div class="swiper-button-next swiper-button-black"></div>-->
+    <div class="swiper-pagination"></div><!--分页器-->
+
+</div>
+
+<div style="font:24px/150% '微软雅黑',Arial,Verdana,'宋体';
+            font-weight: 600;margin-left:500px;margin-top:10px;">全球精选好物，值得信赖！</div>
+    <div class="bk">
+        <ul class="ul_1">
+            <li class="sum">
+                <dl>
+                    <dt class="dt_1">
+                        <a target="_blank" title="Fascy 水分炮弹护手霜组合 80ml/支*5" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24452&f=index">Fascy 水分炮弹护手霜组合 80ml/支*5</a>
+                    </dt>
+                    <dd class="dd_1">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24452&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325778/20161223/585cd6293493c.jpg!medium" alt="Fascy 水分炮弹护手霜组合 80ml/支*5">
+                        </a>
+                    </dd>
+                    <dd class="price" >
+                        <em>￥166.00</em>
+                        <span>￥230.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_2">
+                        <a target="_blank" title="JAYJUN 水光玫瑰面膜 10片/盒" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24434&f=index">JAYJUN 水光玫瑰面膜 10片/盒</a>
+                    </dt>
+                    <dd class="dd_2">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24434&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325778/20161216/58538e5d86ed7.png!medium" alt="JAYJUN 水光玫瑰面膜 10片/盒">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥108.00</em>
+                        <span>￥188.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_3">
+                    <a target="_blank" title="日本进口小林退热贴小林制药婴幼儿童降温贴冰凉贴 2岁以上 粉色 12+4片" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=23559&f=index" title="日本进口小林退热贴小林制药婴幼儿童降温贴冰凉贴 2岁以上 粉色 12+4片">日本进口小林退热贴小林制药婴幼儿童降温贴冰凉贴 2岁以上 粉色 12+4片</a>
+                    </dt>
+                    <dd class="dd_3">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=23559&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325813/20161012/57fdcb8fc4499.jpg!medium" alt="日本进口小林退热贴小林制药婴幼儿童降温贴冰凉贴 2岁以上 粉色 12+4片"></a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥38.00</em>
+                        <span>￥45.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_4">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=22229&f=index" title="LOTTE 乐天 妙之吻牛奶碳酸饮料 250ml">LOTTE 乐天 妙之吻牛奶碳酸饮料 250ml</a>
+                    </dt>
+                    <dd class="dd_4">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=22229&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325778/20160729/579aea7a8df13.jpg!medium" alt="LOTTE 乐天 妙之吻牛奶碳酸饮料 250ml">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥4.20</em>
+                        <span id="li_4">￥7.50</span>
+                    </dd>
+                </dl>
+
+
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_5">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24874&f=index" title="后 拱辰享雪美白3件套">后 拱辰享雪美白3件套</a>
+                    </dt>
+                    <dd class="dd_5">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24874&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325820/20170215/58a4017b7aa77.png!medium" alt="后 拱辰享雪美白3件套">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥971.00</em>
+                        <span id="li_5">￥1300.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_6">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24806&f=index" title="雪花秀 滋阴水乳两件套">雪花秀 滋阴水乳两件套</a>
+                    </dt>
+                    <dd class="dd_6">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24806&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325820/20170214/58a296c2d8a19.png!medium" alt="雪花秀 滋阴水乳两件套">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥635.00</em>
+                        <span id="li_6">￥840.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_7">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24938&f=index" title="伊内兹 叶绿素水润爽肤水">伊内兹 叶绿素水润爽肤水</a>
+                    </dt>
+                    <dd class="dd_7">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24938&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325820/20170216/58a4fff4655da.jpg!medium" alt="伊内兹 叶绿素水润爽肤水">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥105.00</em>
+                        <span id="li_7">￥120.00</span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="sum">
+                <dl>
+                    <dt class="dt_8">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24812&f=index" title="兰芝 雪纱丝柔防晒隔离霜 #60">兰芝 雪纱丝柔防晒隔离霜 #60</a>
+                    </dt>
+                    <dd class="dd_8">
+                        <a target="_blank" href="http://www.fenhongshop.com/shop/index.php?act=goods&op=index&goods_id=24812&f=index">
+                            <img src="http://img.fenhongshop.com/goods/325820/20170214/58a29c7833bda.jpg!medium" alt="兰芝 雪纱丝柔防晒隔离霜 #60">
+                        </a>
+                    </dd>
+                    <dd class="price">
+                        <em>￥188.00</em>
+                        <span id="li_8">￥357.00</span>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+
+    </div>
+<div style="font:24px/150% '微软雅黑',Arial,Verdana,'宋体';
+            font-weight: 600;margin-left:500px;margin-top:40px;">welcome to the website!</div>
+<div style="margin-top:100px;"></div>
+<script type="text/javascript">
+var mySwiper = new Swiper ('.swiper-container', {
+//        direction: 'vertical',垂直
+        direction: 'horizontal',
+
+        loop: true,
+        autoplay: 1000,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next',
+        //关于分页
+        pagination : '.swiper-pagination',//使能分页
+//        paginationType : 'custom',//默认是点数bullets的形式，此时为自定义
+        pagination : '.swiper-pagination',
+//        uniqueNavElements :false,//使分页器有效范围包括外部
+        paginationClickable :true,  //指示点分页器会控制切换。
+    });
+
+// $(".regist").mouseout(function(){
+//     window.location.href = "../zhihu.html";
+// }
+
+var dds = document.getElementsByClassName("sum");
+        console.log(typeof(dds));
+//var box=document.getElementById("li_4")
+$(".bk").mouseout(function(){
+//    $(this).css("opacity","0.9");
+    $(".sum").css("opacity","0.9");
+})
+    for(var m=0;m<dds.length;m++){
+        (function(i){
+            dds[i].onmouseover = function () {
+                for(var j=0; j<8; j++){
+                    dds[j].style.opacity = "0.25";
+                }
+                dds[i].style.opacity = "1";
+            };
+        })(m)
+}
+</script>
+
+</body>
+</html>
