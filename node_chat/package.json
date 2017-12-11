@@ -1,0 +1,28 @@
+{
+  "name": "chatroom",
+  "version": "1.0.0",
+  "description": "this is a multirom chat server",
+  "main": "chat_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/meinezoe/lesson.git"
+  },
+  "keywords": [
+    "server",
+    "chat"
+  ],
+  "author": "myzoe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meinezoe/lesson/issues"
+  },
+  "homepage": "https://github.com/meinezoe/lesson#readme",
+  "devDependencies": {
+    "express": "^4.16.2",
+    "mime": "^2.0.3",
+    "socket.io": "^2.0.4"
+  }
+}

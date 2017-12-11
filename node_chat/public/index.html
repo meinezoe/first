@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>chat</title>
+	<!-- <link rel="stylesheet" type="text/css" href='./css/style.css'> -->
+	<script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
+		<!-- <script src="socket.io/socket.io.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<!-- <script type="text/javascript" src="chat.js"></script>
+<script type="text/javascript" src="chat_ui.js"></script> -->
+	<style>
+	body{
+	padding:50px;
+}
+a {
+	color:#00b7ff;
+}
+#content{
+	width:800px;
+	margin-left:auto
+	margin-right:auto;
+}
+#room{
+	background-color: #ddd;
+	margin-bottom:1em;
+}
+#messages{
+	width:690px;
+	height:300px;
+	overflow:auto;
+	background-color: #eee;
+	margin-bottom: 1em;
+	margin-right: 10px;
+}
+#room-list{
+	folat:right;
+	width:100px;
+	height:300px;
+	overflow:auto; 
+}
+#room-list div{
+	border-bottom:1px solid #eee;
+}
+#room-list div:hover{
+	background-color:#ddd;
+}
+#send-message{
+	width:700px;
+	margin-bottom: 1em;
+	margin-right:1em;
+}
+#help{
+	font:10px "Lucida Grande",Helvetica,Arial,sans-serif;
+}
+
+</style>
+
+</head>
+
+<body>
+	<div id="content"> 
+		<div id="room"></div>
+		<div id="room-list"></div>
+		<div id="messages"></div>
+		<form action="#" id="send-form">
+			<input type="text" id="send-message">
+			<input type="submit" id="sent-button" value="send">
+			<div id="help">
+				<ul>
+					<li>Change nikename:<code>/nick[username]</code></li>
+					<li>join/create room:<code>/join[room name]</code></li>
+				</ul>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+
+//this is client
+//向服务端发送连接请求，并在连接成功后发送hello
+function divEscapedContentElement(message){
+	return $('<div></div>').text(message);
+}function divSystemContentElement(message){
+	return $('<div></div>').html('<i>'+message+'</i>');
+}
+//以上是创建授信内容，防止一些脚本语言混入
+
+//处理用户输入的函数
+function processUserInput(chatApp,socket){
+	var message = $('#send-message').val();
+	console.log(message);
+	var systemMessage;
+	if(message.charAt(0) == '/'){
+		systemMessage = chatApp.processCommand(message);
+		if(systemMessage){
+			$('#messages').append(divSystemContentElement(systemMessage));
+		}
+	}else {
+		chatApp.sendMessage($('#room').text(),message);
+		$('#messages').append(divEscapedContentElement(message));
+		$('#messages').scrollTop($('#messages').prop('scrollHeight'));
+	}
+	$('#send-message').val();
+}
+//对客户端的Socket.io事件处理进行初始化
+//并向服务器端发起连接请求。
+//connect()可以接受一个url参数，可以
+//是http完整地址，也可以是相对路径，如果
+//省略则默认连接当前路径。
+//当客户端成功加载socket.io客户端文件后
+//会获取一个全局对象Io，我们将通过io.connect函数
+//来向服务器端发送连接请求。
+var socket = io.connect();
+
+$(document).ready(function(){
+	var chatApp = new Chat(socket);
+	//显示更名尝试的结果
+	socket.on('connect',function(){
+		socket.send("hello,connect sucess!");
+	});
+	socket.on('nameResult',function(result){
+		var message;
+		if(result.success){
+			message = 'you are now know as'+result.name+'.';
+		}else {
+			message = result.message;
+		}
+		$('#messages').append(divSystemContentElement(message));
+	});
+	socket.on('joinResult',function(result){
+		$('#room').text(result.room);
+		$('#messages').append(divSystemContentElement('Room changed.'));
+	});
+	socket.on('message',function(message){
+		var newElement = $('<div></div>').text(message.text);
+		$('#room').text(result.room);
+		$('#messages').append(newElement);
+	});
+	socket.on('rooms',function(rooms){
+		$('#room-list').empty();
+		for(var room in rooms){
+			room = room.substring(1,room.length);
+			if(room!=''){
+				$('#room-list').append(divEscapedContentElement(room));
+			}
+		}
+
+		$('#room-list div').click(function(){
+			chatApp.processCommand('/join'+$(this).text());
+			$('#send-message').focus();
+		});
+	});
+
+	setInterval(function(){
+		socket.emit('rooms');
+	},1000);
+	$('#send-message').focus();
+	$('#send-form').submit(function(){
+		processUserInput(chatApp,socket);
+		return false;
+	});
+});
+
+
+
+
+
+//初始化可传入一个socket.io的参数socket
+var Chat=function(socket){
+	this.socket=socket;
+};
+//发送聊天信息的函数
+Chat.prototype.sendMessage = function(room,text) {
+	var message = {
+		room:room,
+		text:text
+	};
+	this.socket.emit('message',message);
+};
+Chat.prototype.changeRoom = function(room){
+	this.socket.emit('join',{
+		newRoom:room
+	});
+};
+//处理聊天命令，能识别JOIN创建房间 和 NICK修改昵称
+Chat.prototype.processCommand = function(command){
+	var words = command.split(' ');
+	var command = words[0].substring(1,words[0].length).toLowerCase();
+	var message = false;
+	switch(command){
+		case 'join':
+			words.shift();
+			var room = words.join(' ');
+			this.changeRoom(room);
+			break;
+		case 'nick':
+			words.shift();
+			var name = words.join(' ');
+			this.socket.emit('nameAttempt',name);
+			break;
+		default:
+			message = 'Unrecognized command';
+			break;
+	}
+	return message;
+};
+
+
+
+</script>
+</body>
+
+</html>

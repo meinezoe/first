@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div style="position:absolute;right:300px;top:200px;width:200px;height:200px;border:1px solid red;">
+	<div style="height:50px;"></div>
+	<h1>hello,boys!</h1>
+	<button id='sendBtn'>send</button>
+</div>
+
+
+
+<script type="text/javascript">
+var socket=io.connect();//与服务器进行连接
+console.log("this is web");
+var button=document.getElementById('sendBtn');
+var button.onclick=function(){
+	socket.emit('foo','hello')
+}
+
+</script>
+</body>
+</html>
